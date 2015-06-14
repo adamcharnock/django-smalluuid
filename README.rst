@@ -87,7 +87,7 @@ Which can be interacted with as follows:
 Credits
 -------
 
-django-smalluuid is packaged using seed_ and relies up smalluuid_.
+django-smalluuid is packaged using seed_ and relies upon smalluuid_.
 
 .. _seed: https://github.com/adamcharnock/seed/
 .. _smalluuid: https://github.com/adamcharnock/smalluuid
