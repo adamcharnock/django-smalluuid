@@ -9,7 +9,7 @@ from testapp.models import TestModel, TypedTestModel
 
 class ModelFieldTestCase(TestCase):
 
-    def test_to_python(self):
+    def ModelFieldTestCase(self):
         field = models.SmallUUIDField()
         out = field.to_python('IBNApQOzTHGzdjkSt6t-Jg')
         self.assertIsInstance(out, SmallUUID)
@@ -48,6 +48,15 @@ class ModelTestCase(TestCase):
         uuid = TestModel.objects.values_list('uuid', flat=True)[0]
         self.assertEqual(model.uuid, uuid)
 
+    def test_filter(self):
+        TestModel.objects.create()
+        model = TestModel.objects.create()
+        TestModel.objects.create()
+
+        uuid = TestModel.objects.filter(uuid=str(model.uuid)).values_list('uuid', flat=True)[0]
+        self.assertIsInstance(model.uuid, SmallUUID)
+        self.assertEqual(model.uuid, uuid)
+
 
 class TypedModelTestCase(TestCase):
 
@@ -64,11 +73,3 @@ class TypedModelTestCase(TestCase):
         uuid = TypedTestModel.objects.values_list('uuid', flat=True)[0]
         self.assertEqual(model.uuid, uuid)
 
-    def test_filter(self):
-        TestModel.objects.create()
-        model = TestModel.objects.create()
-        TestModel.objects.create()
-
-        uuid = TestModel.objects.filter(uuid=str(model.uuid)).values_list('uuid', flat=True)[0]
-        self.assertIsInstance(model.uuid, SmallUUID)
-        self.assertEqual(model.uuid, uuid)
