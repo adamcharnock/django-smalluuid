@@ -13,8 +13,9 @@ django-smalluuid
 .. image:: https://img.shields.io/travis/adamcharnock/django-smalluuid.svg
     :target: https://travis-ci.org/adamcharnock/django-smalluuid/
 
-.. image:: https://coveralls.io/repos/adamcharnock/django-smalluuid/badge.svg
-    :target: https://coveralls.io/r/adamcharnock/django-smalluuid/
+.. image:: https://coveralls.io/repos/adamcharnock/django-smalluuid/badge.svg?branch=master
+    :target: https://coveralls.io/r/adamcharnock/django-smalluuid?branch=master
+
 
 
 Installation
