@@ -19,7 +19,9 @@ class ShortUUIDField(UUIDField):
         super(ShortUUIDField, self).__init__(*args, **kwargs)
 
     def prepare_value(self, value):
-        return six.text_type(value)
+        if isinstance(value, self.uuid_class):
+            return six.text_type(value)
+        return value
 
     def to_python(self, value):
         if value in self.empty_values:

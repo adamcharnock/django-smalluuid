@@ -4,6 +4,7 @@ from smalluuid import SmallUUID
 from smalluuid import TypedSmallUUID
 
 from django_smalluuid import models, forms
+from django_smalluuid.forms import ShortUUIDField
 from testapp.forms import TestForm, TypedTestForm
 from testapp.models import TestModel, TypedTestModel
 
@@ -60,6 +61,10 @@ class FormFieldTestCase(TestCase):
     def test_typed_none(self):
         form = TypedTestForm({'uuid': None})
         self.assertFalse(form.is_valid(), form.errors)
+
+    def test_prepare_value(self):
+        field = ShortUUIDField()
+        self.assertEqual(field.prepare_value('IBNApQOzTHGzdjkSt6t-Jg'), 'IBNApQOzTHGzdjkSt6t-Jg')
 
 
 class ModelTestCase(TestCase):
