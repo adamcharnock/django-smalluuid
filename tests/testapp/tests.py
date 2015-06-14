@@ -4,6 +4,7 @@ from smalluuid import SmallUUID
 from smalluuid import TypedSmallUUID
 
 from django_smalluuid import models, forms
+from testapp.forms import TestForm, TypedTestForm
 from testapp.models import TestModel, TypedTestModel
 
 
@@ -32,6 +33,33 @@ class ModelFieldTestCase(TestCase):
     def test_form_field(self):
         field = models.SmallUUIDField()
         self.assertIsInstance(field.formfield(), forms.ShortUUIDField)
+
+
+class FormFieldTestCase(TestCase):
+
+    def test_valid(self):
+        form = TestForm({'uuid': 'IBNApQOzTHGzdjkSt6t-Jg'})
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_invalid(self):
+        form = TestForm({'uuid': 'xxx'})
+        self.assertFalse(form.is_valid(), form.errors)
+
+    def test_none(self):
+        form = TestForm({'uuid': None})
+        self.assertFalse(form.is_valid(), form.errors)
+
+    def test_typed_valid(self):
+        form = TypedTestForm({'uuid': 'IBNApQOzTHGzdjkSt6t-Jg'})
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_typed_invalid(self):
+        form = TypedTestForm({'uuid': 'xxx'})
+        self.assertFalse(form.is_valid(), form.errors)
+
+    def test_typed_none(self):
+        form = TypedTestForm({'uuid': None})
+        self.assertFalse(form.is_valid(), form.errors)
 
 
 class ModelTestCase(TestCase):

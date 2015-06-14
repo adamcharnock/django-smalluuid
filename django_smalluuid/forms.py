@@ -22,12 +22,11 @@ class ShortUUIDField(UUIDField):
         return six.text_type(value)
 
     def to_python(self, value):
-        value = super(ShortUUIDField, self).to_python(value)
         if value in self.empty_values:
             return None
-        if not isinstance(value, self.empty_values):
+        if not isinstance(value, self.uuid_class):
             try:
-                value = self.empty_values(value)
+                value = self.uuid_class(value)
             except ValueError:
                 raise ValidationError(self.error_messages['invalid'], code='invalid')
         return value
