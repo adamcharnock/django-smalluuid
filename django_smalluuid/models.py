@@ -18,6 +18,8 @@ class SmallUUIDField(UUIDField):
         self.uuid_class = uuid_class
         if isinstance(self.uuid_class, six.string_types):
             self.uuid_class = import_string(uuid_class)
+        # unique=True is a much more sensible default for UUIDs
+        kwargs.setdefault('unique', True)
         super(SmallUUIDField, self).__init__(verbose_name, **kwargs)
 
     def get_db_prep_value(self, value, *args, **kwargs):

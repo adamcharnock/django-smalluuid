@@ -12,6 +12,14 @@ from testapp.models import TestModel, TypedTestModel
 
 class ModelFieldTestCase(TestCase):
 
+    def test_unique_by_default(self):
+        field = models.SmallUUIDField()
+        self.assertTrue(field.unique)
+
+    def test_force_not_unique(self):
+        field = models.SmallUUIDField(unique=False)
+        self.assertFalse(field.unique)
+
     def test_to_python(self):
         field = models.SmallUUIDField()
         out = field.to_python('IBNApQOzTHGzdjkSt6t-Jg')
