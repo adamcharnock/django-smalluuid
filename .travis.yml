@@ -1,0 +1,15 @@
+language: python
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "nightly"
+install:
+  - "python setup.py develop"
+  - "pip install ."
+  - "pip install pytest coveralls"
+script:
+  - cd tests; coverage run python manage.py test
+after_success:
+  coveralls

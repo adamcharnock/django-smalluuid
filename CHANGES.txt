@@ -1,0 +1,5 @@
+Change-log for django-smalluuid.
+
+This file will be added to as part of each release
+
+----

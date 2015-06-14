@@ -1,0 +1,12 @@
+*.log
+.DS_Store
+.config.ini
+*.sqlite3
+*.pyc
+*.swp
+*.egg-info
+/.idea
+.bash_history
+.coveralls.yml
+.coverage
+/dist
