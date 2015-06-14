@@ -3,3 +3,8 @@ Change-log for django-smalluuid.
 This file will be added to as part of each release
 
 ----
+
+Version 0.1.0 (first version), Sun 14 Jun 2015
+===============================================
+
+
