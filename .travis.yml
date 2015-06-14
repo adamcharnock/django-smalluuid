@@ -12,6 +12,6 @@ install:
   - "pip install ."
   - "pip install pytest coveralls"
 script:
-  - cd tests; coverage run manage.py test
+  - cd tests; coverage run --source=django_smalluuid manage.py test
 after_success:
   coveralls
