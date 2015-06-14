@@ -11,7 +11,7 @@ from testapp.models import TestModel, TypedTestModel
 
 class ModelFieldTestCase(TestCase):
 
-    def ModelFieldTestCase(self):
+    def test_to_python(self):
         field = models.SmallUUIDField()
         out = field.to_python('IBNApQOzTHGzdjkSt6t-Jg')
         self.assertIsInstance(out, SmallUUID)
