@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.db import connection
 from smalluuid import SmallUUID
@@ -15,6 +16,10 @@ class ModelFieldTestCase(TestCase):
         field = models.SmallUUIDField()
         out = field.to_python('IBNApQOzTHGzdjkSt6t-Jg')
         self.assertIsInstance(out, SmallUUID)
+
+    def test_to_python_invalid_value(self):
+        field = models.SmallUUIDField()
+        self.assertRaises(ValidationError, field.to_python, 'xxx')
 
     def test_to_python_custom_class(self):
         field = models.SmallUUIDField(uuid_class=TypedSmallUUID)
