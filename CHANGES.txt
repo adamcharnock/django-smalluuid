@@ -4,6 +4,14 @@ This file will be added to as part of each release
 
 ----
 
+Version 0.1.1, Mon 15 Jun 2015
+===============================
+
+0213010ccd	Updating default value generators to support django migrations (Adam Charnock)
+e08f1c5cde	The SmallUUIDField model field now defaults to unique=True (Adam Charnock)
+6335289c21	Readme typo fix (Adam Charnock)
+
+
 Version 0.1.0 (first version), Sun 14 Jun 2015
 ===============================================
 
