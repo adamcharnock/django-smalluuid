@@ -4,6 +4,12 @@ This file will be added to as part of each release
 
 ----
 
+Version 0.1.2, Mon 15 Jun 2015
+===============================
+
+ec94611406	Fixing bug in get_db_prep_value (Adam Charnock)
+
+
 Version 0.1.1, Mon 15 Jun 2015
 ===============================
 
