@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db.models.fields import UUIDField
 from django.utils import six
+from django.utils.deconstruct import deconstructible
 from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 import smalluuid
@@ -53,13 +54,26 @@ class SmallUUIDField(UUIDField):
         return self.uuid_class(int=value.int)
 
 
-def uuid_default(version=None):
-    def uuid_generator():
-        return smalluuid.SmallUUID(version=version)
-    return uuid_generator
+@deconstructible
+class UUIDDefault(object):
+
+    def __init__(self, version=None):
+        self.version = version
+
+    def __call__(self):
+        return smalluuid.SmallUUID(version=self.version)
+
+uuid_default = UUIDDefault
 
 
-def uuid_typed_default(version=None, type=None):
-    def uuid_generator():
-        return smalluuid.TypedSmallUUID(version=version, type=type)
-    return uuid_generator
+@deconstructible
+class UUIDTypedDefault(object):
+
+    def __init__(self, version=None, type=None):
+        self.version = version
+        self.type = type
+
+    def __call__(self):
+        return smalluuid.TypedSmallUUID(version=self.version, type=self.type)
+
+uuid_typed_default = UUIDTypedDefault
