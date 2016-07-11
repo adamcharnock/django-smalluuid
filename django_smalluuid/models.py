@@ -26,7 +26,8 @@ class SmallUUIDField(UUIDField):
     def get_db_prep_value(self, value, *args, **kwargs):
         if isinstance(value, six.string_types):
             value = self.uuid_class(value)
-        value = value.hex_grouped
+        if hasattr(value, 'hex_grouped'):
+            value = value.hex_grouped
         return super(SmallUUIDField, self).get_db_prep_value(value, *args, **kwargs)
 
     def to_python(self, value):

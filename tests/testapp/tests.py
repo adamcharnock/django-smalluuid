@@ -44,6 +44,11 @@ class ModelFieldTestCase(TestCase):
         out = field.get_db_prep_value(SmallUUID('IBNApQOzTHGzdjkSt6t-Jg'), connection=connection)
         self.assertEqual(out, '201340a503b34c71b3763912b7ab7e26')
 
+    def test_prep_none(self):
+        field = models.SmallUUIDField()
+        out = field.get_db_prep_value(None, connection=connection)
+        self.assertEqual(out, None)
+
     def test_form_field(self):
         field = models.SmallUUIDField()
         self.assertIsInstance(field.formfield(), forms.ShortUUIDField)
