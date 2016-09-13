@@ -5,7 +5,9 @@ python:
   - "3.5"
   - "nightly"
 env:
-  - DJANGO_VERSION=1.8.2
+  - DJANGO_VERSION=1.10.1
+  - DJANGO_VERSION=1.9.9
+  - DJANGO_VERSION=1.8.14
 install:
   - "python setup.py develop"
   - "pip install ."
