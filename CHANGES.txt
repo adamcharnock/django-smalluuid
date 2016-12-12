@@ -4,6 +4,13 @@ This file will be added to as part of each release
 
 ----
 
+Version 1.0.0, Mon 12 Dec 2016
+===============================
+
+de9ab97fd9	Now building for multiple django versions (Adam Charnock)
+092d4eb918	No longer testing against Python 3.2/3.3. Adding 3.5. (Adam Charnock)
+
+
 Version 0.1.3, Mon 11 Jul 2016
 ===============================
 
