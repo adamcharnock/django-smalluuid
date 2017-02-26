@@ -4,6 +4,12 @@ This file will be added to as part of each release
 
 ----
 
+Version 1.1.1, Sun 26 Feb 2017
+===============================
+
+7358e3fb15	Further fixes for changes in Django 1.11 (Adam Charnock)
+
+
 Version 1.1.0, Sun 26 Feb 2017
 ===============================
 
