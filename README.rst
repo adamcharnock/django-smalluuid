@@ -25,6 +25,12 @@ Installation using pip::
 
     pip install django-smalluuid
 
+Tested on:
+
+ * Django >= 1.8 <= 1.11
+ * Python 2.7, 3.4, 3.5, 3.6
+
+
 Basic Usage
 -----------
 
