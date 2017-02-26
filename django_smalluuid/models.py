@@ -1,4 +1,7 @@
+import uuid
+
 from django.core.exceptions import ValidationError
+from django.db import connection
 from django.db.models.fields import UUIDField
 from django.utils import six
 from django.utils.deconstruct import deconstructible
@@ -24,11 +27,21 @@ class SmallUUIDField(UUIDField):
         super(SmallUUIDField, self).__init__(verbose_name, **kwargs)
 
     def get_db_prep_value(self, value, *args, **kwargs):
+        if value is None:
+            return value
+
         if isinstance(value, six.string_types):
             value = self.uuid_class(value)
-        if hasattr(value, 'hex_grouped'):
-            value = value.hex_grouped
-        return super(SmallUUIDField, self).get_db_prep_value(value, *args, **kwargs)
+
+        if hasattr(value, 'bytes'):
+            # Make sure this is a non-small UUID so the db will know
+            # how to handle it
+            value = uuid.UUID(bytes=value.bytes)
+
+        if connection.features.has_native_uuid_field:
+            return value
+        else:
+            return value.hex
 
     def to_python(self, value):
         if value and not isinstance(value, self.uuid_class):
