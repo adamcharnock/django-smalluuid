@@ -4,6 +4,13 @@ This file will be added to as part of each release
 
 ----
 
+Version 1.1.0, Sun 26 Feb 2017
+===============================
+
+232a828f02	Updating readme with django/python version support (Adam Charnock)
+d06ba7cb2c	Fixes for changes to UUID field in django 1.11 (Adam Charnock)
+
+
 Version 1.0.0, Mon 12 Dec 2016
 ===============================
 
