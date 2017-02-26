@@ -3,9 +3,11 @@ python:
   - "2.7"
   - "3.4"
   - "3.5"
+  - "3.6"
   - "nightly"
 env:
-  - DJANGO_VERSION=1.10.1
+  - DJANGO_VERSION=1.11b1
+  - DJANGO_VERSION=1.10.5
   - DJANGO_VERSION=1.9.9
   - DJANGO_VERSION=1.8.14
 install:

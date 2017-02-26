@@ -18,5 +18,6 @@ setup(
     install_requires=[
         'django>=1.8',
         'smalluuid>=0.1.4',
+        'six',
     ],
 )

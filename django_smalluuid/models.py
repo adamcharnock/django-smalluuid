@@ -33,7 +33,10 @@ class SmallUUIDField(UUIDField):
     def to_python(self, value):
         if value and not isinstance(value, self.uuid_class):
             try:
-                return self.uuid_class(value)
+                if isinstance(value, six.string_types) and len(value) > 30:
+                    return self.uuid_class(hex=value)
+                else:
+                    return self.uuid_class(small=value)
             except ValueError:
                 raise ValidationError(
                     self.error_messages['invalid'],
