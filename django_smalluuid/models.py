@@ -3,7 +3,7 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import connection
 from django.db.models.fields import UUIDField
-from django.utils import six
+import six
 from django.utils.deconstruct import deconstructible
 from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
@@ -66,7 +66,7 @@ class SmallUUIDField(UUIDField):
         defaults.update(kwargs)
         return super(SmallUUIDField, self).formfield(**defaults)
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, *args, **kwargs):
         if not value:
             return None
         return self.uuid_class(int=value.int)
