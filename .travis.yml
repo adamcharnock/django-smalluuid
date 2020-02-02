@@ -1,18 +1,35 @@
 language: python
 python:
   - "2.7"
-  - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7"
+  - "3.8"
   - "nightly"
 env:
-  - DJANGO_VERSION=1.11b1
-  - DJANGO_VERSION=1.10.5
-  - DJANGO_VERSION=1.9.9
-  - DJANGO_VERSION=1.8.14
+  - DJANGO_VERSION=1.11.*
+  - DJANGO_VERSION=2.0.*
+  - DJANGO_VERSION=2.1.*
+  - DJANGO_VERSION=2.2.*
+  - DJANGO_VERSION=3.0.*
+matrix:
+  exclude:
+    - env: DJANGO_VERSION=3.0.*
+      python: "3.5"
+    - env: DJANGO_VERSION=2.0.*
+      python: "2.7"
+    - env: DJANGO_VERSION=2.1.*
+      python: "2.7"
+    - env: DJANGO_VERSION=2.2.*
+      python: "2.7"
+    - env: DJANGO_VERSION=3.0.*
+      python: "2.7"
+  allow_failures:
+    - python: "nightly"
 install:
-  - "python setup.py develop"
+  - "pip install smalluuid>=0.1.4 six"
   - "pip install ."
+  - "pip install -q Django==$DJANGO_VERSION"
   - "pip install pytest coveralls"
 script:
   - coverage run --source=django_smalluuid ./tests/manage.py test
