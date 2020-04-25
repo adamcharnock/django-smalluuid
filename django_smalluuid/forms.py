@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.forms import UUIDField
-from django.utils import six
+import six
 from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 
