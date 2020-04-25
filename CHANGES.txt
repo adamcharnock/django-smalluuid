@@ -4,6 +4,15 @@ This file will be added to as part of each release
 
 ----
 
+Version 1.2.0, Sat 25 Apr 2020
+===============================
+
+4869e160f3	Upping smalluuid requirement to >=1.1.0, as this addres Python 3.8 support (Adam Charnock)
+5366656ed1	fix MIDDLEWARE setting for newer Django versions (Petr Dlouhý)
+59a29f0ff1	fix and update Travis testing (Petr Dlouhý)
+15aad0b01d	fixes for Django 3.0 (Petr Dlouhý)
+
+
 Version 1.1.1, Sun 26 Feb 2017
 ===============================
 
