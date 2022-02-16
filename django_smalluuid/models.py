@@ -3,10 +3,9 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import connection
 from django.db.models.fields import UUIDField
-import six
 from django.utils.deconstruct import deconstructible
 from django.utils.module_loading import import_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import smalluuid
 
 from django_smalluuid import settings, forms
@@ -20,7 +19,7 @@ class SmallUUIDField(UUIDField):
 
     def __init__(self, verbose_name=None, uuid_class=settings.DEFAULT_CLASS, **kwargs):
         self.uuid_class = uuid_class
-        if isinstance(self.uuid_class, six.string_types):
+        if isinstance(self.uuid_class, str):
             self.uuid_class = import_string(uuid_class)
         # unique=True is a much more sensible default for UUIDs
         kwargs.setdefault('unique', True)
@@ -30,7 +29,7 @@ class SmallUUIDField(UUIDField):
         if value is None:
             return value
 
-        if isinstance(value, six.string_types):
+        if isinstance(value, str):
             value = self.uuid_class(value)
 
         if hasattr(value, 'bytes'):
@@ -46,7 +45,7 @@ class SmallUUIDField(UUIDField):
     def to_python(self, value):
         if value and not isinstance(value, self.uuid_class):
             try:
-                if isinstance(value, six.string_types) and len(value) > 30:
+                if isinstance(value, str) and len(value) > 30:
                     return self.uuid_class(hex=value)
                 else:
                     return self.uuid_class(small=value)
