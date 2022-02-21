@@ -27,8 +27,8 @@ Installation using pip::
 
 Tested on:
 
- * Django >= 1.8 <= 1.11
- * Python 2.7, 3.4, 3.5, 3.6
+ * Django >= 2.2 <= 4.0
+ * Python 3.7, 3.8, 3.9, 3.10
 
 
 Basic Usage
