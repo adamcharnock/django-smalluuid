@@ -22,9 +22,11 @@ jobs:
         
     strategy:
       matrix:
-        DJANGO_VERSION: [ '2.2.*', '3.0.*', '3.1.*', '3.2.*', '4.0.*']
+        DJANGO_VERSION: [ '2.2.*', '3.0.*', '3.1.*', '3.2.*', '4.0.*', '4.1.*']
         python-version: ['3.7', '3.8', '3.9', '3.10']
         exclude:
+          - DJANGO_VERSION: '4.1.*'
+            python-version: '3.7'
           - DJANGO_VERSION: '4.0.*'
             python-version: '3.7'
       fail-fast: false
@@ -65,14 +67,7 @@ jobs:
 
       - name: Testing
         run: |
-          case "${{ matrix.DJANGO_VERSION }},${{ matrix.python-version }}" in
-            "2.2.*,3.10"|"3.0.*,3.10"|"3.1.*,3.10")  # Django runs with warnings in this python version
-              PYTHONPATH=`pwd` coverage run --source=django_smalluuid ./tests/manage.py test django_smalluuid
-              ;;
-            *)
-              PYTHONPATH=`pwd` python -W error::DeprecationWarning -m coverage run --source=django_smalluuid ./tests/manage.py test django_smalluuid
-              ;;
-          esac
+          PYTHONPATH=`pwd` python -W error::DeprecationWarning -m coverage run --source=django_smalluuid ./tests/manage.py test django_smalluuid
           coverage xml && codecov
         env:
           DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
